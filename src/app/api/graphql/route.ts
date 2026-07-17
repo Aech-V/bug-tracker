@@ -15,6 +15,13 @@ const yoga = createYoga({
     graphqlEndpoint: '/api/graphql',
     graphiql: process.env.NODE_ENV !== 'production',
     fetchAPI: { Request, Response },
+    
+    cors: {
+        origin: process.env.FRONTEND_URL || 'https://your-vercel-domain.vercel.app', 
+        credentials: true,
+        methods: ['GET', 'POST', 'OPTIONS']
+    },
+    
     context: async () => {
         const session = await getServerSession(authOptions);
         return {
